@@ -1,7 +1,8 @@
 
 #import RPI.GPIO as GPIO
-import tkinter as TK
 from tkinter import *
+import tkinter as TK
+
 
 ######################################################
 #
@@ -20,14 +21,23 @@ from tkinter import *
 #set the channel selection type to use the board set,rather than the SOC BCM numbers which can change
 #GPIO.setmode(GPIO.BROAD)
 
-#0 led 1
-#1 led 2
-#2 led 3
-#3 led 4
-#4 led 5
-#5 Rainbow
-relayset = [0,1,2,3,4,5]
-buttonPressedValue = [False,False,False,False,False,False,False,False]
+#change the numbers to the correct gpoi pins!!!
+relayset = [0,
+	1,	#led 1
+	2,	#led 2
+	3,	#led 3
+	4,	#led 4
+	5]	#Rainbow
+	
+#toggle option for button UI
+buttonPressedValue = [False,	#button 0
+	False,	# 	button 1
+	False,	#	button 2
+	False,	#	button 3
+	False,	#	button 4
+	False,	#	button 5
+	False,	#	button 6
+	False]	#	button 7
 
 def InitialSetUpRGPIO():
 	i=0
@@ -155,44 +165,49 @@ def Button7IsPress():
 		
 def InitalSetup():
 	window = TK.Tk()
-	window.title = ("LED Control")
+	window.title("LED Control")
+	window.geometry('{}x{}'.format(480,320))
 	frame = TK.Frame(window)
 	frame.pack()
+	buttonFrame0 = TK.Frame(frame,bg="blue", pady=5)
+	buttonFrame0.pack(side="left")
+	buttonFrame1 = TK.Frame(frame, bg="red" , pady=5)
+	buttonFrame1.pack(side="right")
 	window.configure(background = "black")
 	global btn 
 	btn=[]
 	#led1
-	btn.insert(0,TK.Button(frame,text="LED 1" , width=5, command=Button0IsPress))
+	btn.insert(0,TK.Button(buttonFrame0,text="LED 1" , width=5, command=Button0IsPress))
 	btn[0].config(relief="raised")
 	btn[0].pack(side="left")
 	#led2
-	btn.insert(1,TK.Button(frame,text="LED 2" , width=5, command=Button1IsPress))
+	btn.insert(1,TK.Button(buttonFrame0,text="LED 2" , width=5, command=Button1IsPress))
 	btn[1].config(relief="raised")
 	btn[1].pack(side="left")
 	#led3
-	btn.insert(2,TK.Button(frame,text="LED 3" , width=5,command=Button2IsPress))
+	btn.insert(2,TK.Button(buttonFrame0,text="LED 3" , width=5,command=Button2IsPress))
 	btn[2].config(relief="raised")
 	btn[2].pack(side="left")
 	#led4
-	btn.insert(3,TK.Button(frame,text="LED 4" , width=5, command=Button3IsPress))
+	btn.insert(3,TK.Button(buttonFrame0,text="LED 4" , width=5, command=Button3IsPress))
 	btn[3].config(relief="raised")
 	btn[3].pack(side="left")
 	#led5
-	btn.insert(4,TK.Button(frame,text="LED 5" , width=5, command=Button4IsPress))
+	btn.insert(4,TK.Button(buttonFrame0,text="LED 5" , width=5, command=Button4IsPress))
 	btn[4].config(relief="raised")
 	btn[4].pack(side="left")
 	#All LEDs on no toggle
-	btn.insert(5,TK.Button(frame,text="All On" , width=5, command=Button5IsPress))
+	btn.insert(5,TK.Button(buttonFrame1,text="All On" , width=5, command=Button5IsPress))
 	btn[5].config(relief="raised")
-	btn[5].pack(side="left")
+	btn[5].pack(side="top")
 	#Rainbow Effect on
-	btn.insert(6,TK.Button(frame,text="Rainbow" , width=5, command=Button6IsPress))
+	btn.insert(6,TK.Button(buttonFrame0,text="Rainbow" , width=5, command=Button6IsPress))
 	btn[6].config(relief="raised")
 	btn[6].pack(side="left")
 	#All Off no toggle
-	btn.insert(7,TK.Button(frame,text="All Off" , width=5, command=Button7IsPress))
+	btn.insert(7,TK.Button(buttonFrame1,text="All Off" , width=5, command=Button7IsPress))
 	btn[7].config(relief="raised")
-	btn[7].pack(side="left")
+	btn[7].pack(side="bottom")
 
 	
 InitialSetUpRGPIO()
