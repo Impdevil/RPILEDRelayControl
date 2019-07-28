@@ -81,9 +81,9 @@ def SwitchRelayAll(setToo):
 				buttonPressedValue[i] = True
 		return True
 	elif setToo == False:
-		for i in range((len(relayset) - 1)):
+		for i in range((len(relayset))):
 			if buttonPressedValue[i] == True:
-				#GPIO.output(relayset[i],1)
+				#GPIO.output(relayset[i],0)
 				buttonPressedValue[i] = False
 		return False
 
@@ -117,7 +117,7 @@ def ButtonPress(buttonPressed):
 	elif buttonPressed == 7:
 		print("All off " + str(buttonPressed))
 		SwitchRelayAll(False)
-		for i in range(len(relayset) - 1):
+		for i in range(len(relayset)+1):
 			btn[i].config(relief="raised")
 	else:
 		print ("Default")
@@ -147,7 +147,7 @@ def Button4IsPress():
 	ButtonPress(relayset[4])
 	
 
-#button for Relays all on/off 	
+#button for Relays all on	
 def Button5IsPress():
 	ButtonPress(6)
 	
@@ -169,43 +169,45 @@ def InitalSetup():
 	window.geometry('{}x{}'.format(480,320))
 	frame = TK.Frame(window)
 	frame.pack()
-	buttonFrame0 = TK.Frame(frame,bg="blue", pady=5)
+	buttonFrame0 = TK.Frame(frame, padx=2, pady=0)
 	buttonFrame0.pack(side="left")
-	buttonFrame1 = TK.Frame(frame, bg="red" , pady=5)
+	buttonFrame1 = TK.Frame(frame, padx=2,pady=4)
 	buttonFrame1.pack(side="right")
-	window.configure(background = "black")
+	window.configure()
+	lbl = TK.Label(buttonFrame0,text="Led Control")
+	lbl.pack(side="top")
 	global btn 
 	btn=[]
 	#led1
-	btn.insert(0,TK.Button(buttonFrame0,text="LED 1" , width=5, command=Button0IsPress))
+	btn.insert(0,TK.Button(buttonFrame0,text="LED 1" , height=6, width=7, command=Button0IsPress))
 	btn[0].config(relief="raised")
 	btn[0].pack(side="left")
 	#led2
-	btn.insert(1,TK.Button(buttonFrame0,text="LED 2" , width=5, command=Button1IsPress))
+	btn.insert(1,TK.Button(buttonFrame0,text="LED 2" ,height=6, width=7, command=Button1IsPress))
 	btn[1].config(relief="raised")
 	btn[1].pack(side="left")
 	#led3
-	btn.insert(2,TK.Button(buttonFrame0,text="LED 3" , width=5,command=Button2IsPress))
+	btn.insert(2,TK.Button(buttonFrame0,text="LED 3" ,height=6, width=7,command=Button2IsPress))
 	btn[2].config(relief="raised")
 	btn[2].pack(side="left")
 	#led4
-	btn.insert(3,TK.Button(buttonFrame0,text="LED 4" , width=5, command=Button3IsPress))
+	btn.insert(3,TK.Button(buttonFrame0,text="LED 4" ,height=6, width=7, command=Button3IsPress))
 	btn[3].config(relief="raised")
 	btn[3].pack(side="left")
 	#led5
-	btn.insert(4,TK.Button(buttonFrame0,text="LED 5" , width=5, command=Button4IsPress))
+	btn.insert(4,TK.Button(buttonFrame0,text="LED 5" ,height=6, width=7, command=Button4IsPress))
 	btn[4].config(relief="raised")
 	btn[4].pack(side="left")
 	#All LEDs on no toggle
-	btn.insert(5,TK.Button(buttonFrame1,text="All On" , width=5, command=Button5IsPress))
+	btn.insert(5,TK.Button(buttonFrame1,text="All On" ,height=3, width=6, command=Button5IsPress))
 	btn[5].config(relief="raised")
 	btn[5].pack(side="top")
 	#Rainbow Effect on
-	btn.insert(6,TK.Button(buttonFrame0,text="Rainbow" , width=5, command=Button6IsPress))
+	btn.insert(6,TK.Button(buttonFrame0,text="Rainbow" , height=6, width=9, command=Button6IsPress))
 	btn[6].config(relief="raised")
 	btn[6].pack(side="left")
 	#All Off no toggle
-	btn.insert(7,TK.Button(buttonFrame1,text="All Off" , width=5, command=Button7IsPress))
+	btn.insert(7,TK.Button(buttonFrame1,text="All Off" ,height=3, width=6, command=Button7IsPress))
 	btn[7].config(relief="raised")
 	btn[7].pack(side="bottom")
 
