@@ -1,4 +1,5 @@
 
+
 #import RPI.GPIO as GPIO
 from tkinter import *
 import tkinter as TK
@@ -93,11 +94,11 @@ def ButtonPress(buttonPressed):
 		if SwitchRelay(buttonPressed, True) == True:
 			#set the button to being coloured/On(Coloured coz im not an idiot!!!!)
 			print("do once 1")
-			btn[buttonPressed].config(relief="sunken")
+			btn[buttonPressed].config(relief="sunken", bg="lawn green")
 		elif SwitchRelay(buttonPressed, False) == False:
 			#set the button to being off 
 			print("do once 2")
-			btn[buttonPressed].config(relief="raised")
+			btn[buttonPressed].config(relief="raised", bg="grey92")
 	#button 6 rainbow setting relay 5
 	elif buttonPressed == 5: 
 		if SwitchRelay(buttonPressed, True) == True:
@@ -112,13 +113,13 @@ def ButtonPress(buttonPressed):
 		print("All on " + str(buttonPressed))
 		SwitchRelayAll(True)
 		for i in range(len(relayset) -1):
-			btn[i].config(relief="sunken")
+			btn[i].config(relief="sunken", bg="Lawn green")
 			
 	elif buttonPressed == 7:
 		print("All off " + str(buttonPressed))
 		SwitchRelayAll(False)
 		for i in range(len(relayset)+1):
-			btn[i].config(relief="raised")
+			btn[i].config(relief="raised", bg="grey92")
 	else:
 		print ("Default")
 
@@ -170,8 +171,8 @@ def InitalSetup():
 	frame = TK.Frame(window)
 	frame.pack()
 	buttonFrame0 = TK.Frame(frame, padx=2, pady=0)
-	buttonFrame0.pack(side="left")
-	buttonFrame1 = TK.Frame(frame, padx=2,pady=4)
+	buttonFrame0.pack(side="bottom")
+	buttonFrame1 = TK.Frame(frame, padx=2,pady=6)
 	buttonFrame1.pack(side="right")
 	window.configure()
 	lbl = TK.Label(buttonFrame0,text="Led Control")
