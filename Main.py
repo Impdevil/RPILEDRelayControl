@@ -165,13 +165,13 @@ def Button7IsPress():
 		
 def InitalSetup():
 	window = TK.Tk()
-	window.title("LED Control")
+	window.title("LED Control v1")
 	window.geometry('{}x{}'.format(480,320))
 	frame = TK.Frame(window)
 	frame.pack()
 	buttonFrame0 = TK.Frame(frame, padx=2, pady=0)
-	buttonFrame0.pack(side="left")
-	buttonFrame1 = TK.Frame(frame, padx=2,pady=4)
+	buttonFrame0.pack(side="bottom")
+	buttonFrame1 = TK.Frame(frame, padx=2,pady=6)
 	buttonFrame1.pack(side="right")
 	window.configure()
 	lbl = TK.Label(buttonFrame0,text="Led Control")
